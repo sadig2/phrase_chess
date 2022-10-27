@@ -1,5 +1,3 @@
-import json
-from typing import Union
 import uvicorn
 from fastapi import FastAPI
 from pydantic import BaseModel
@@ -25,10 +23,10 @@ functions_dict = {
 def post_item(item: Item):
     chess_piece = item.chess_pieces
     function = functions_dict[chess_piece]
-    n = int(item.n)
-    solutionsCount = function(n)
+    solutionsCount = function(item.n)
     result = {}
     result["solution_count"]=solutionsCount
     return result
+
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
