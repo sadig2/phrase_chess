@@ -68,7 +68,7 @@ def rook(n:int)->int:
 
 def bishop(n:int):
     matrix = [[0]*n for _ in range(n)]
-    possible = 0 # how many queens u can place in n to n matrix
+    possible = 0 # how many bishops u can place in n to n matrix
     attacked_cells = 0
     unattacked_cells = n*n
     variations = 1
@@ -258,8 +258,3 @@ def knight(n:int):
         return 0
     return variations
     
-        
-
-print(knight(2))
-print(bishop(2))
-print(rook(3))
