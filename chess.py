@@ -14,21 +14,21 @@ def queen(n: int):
                 try:
                     matrix[i+x][j+x] = 1
                 except:
-                    print("index out of range")
+                    pass
 
                 try:
                     matrix[i-x][j-x] = 1
                 except:
-                    print("index out of range")
+                    pass
                 try:
                     matrix[i+x][j-x] = 1
                 except:
-                    print("index out of range")
+                    pass
 
                 try:
                     matrix[i-x][j+x] = 1
                 except:
-                    print("index out of range")
+                    pass
 
     if possible < n:
         return 0
@@ -81,7 +81,7 @@ def bishop(n: int):
                         attacked_cells += 1
                     matrix[i+x][j+x] = 1
                 except:
-                    print("index out of range")
+                    pass
                 try:
                     a = i-x
                     if a < 0:
@@ -93,7 +93,7 @@ def bishop(n: int):
                         attacked_cells += 1
                     matrix[a][b] = 1
                 except:
-                    print("index out of range")
+                    pass
                 try:
                     b = j-x
                     if b < 0:
@@ -102,7 +102,7 @@ def bishop(n: int):
                         attacked_cells += 1
                     matrix[i+x][b] = 1
                 except:
-                    print("index out of range")
+                    pass
 
                 try:
                     a = i-x
@@ -112,7 +112,7 @@ def bishop(n: int):
                         attacked_cells += 1
                     matrix[a][j+x] = 1
                 except:
-                    print("index out of range")
+                    pass
             variations *= unattacked_cells
             unattacked_cells -= attacked_cells
             if unattacked_cells <= 0:
@@ -149,7 +149,7 @@ def knight(n: int):
                     attacked_cells += 1
                 matrix[a][b1] = 1
             except:
-                print("index out of range")
+                pass
 
             try:  # check upper right
                 if a < 0:
@@ -160,7 +160,7 @@ def knight(n: int):
                     attacked_cells += 1
                 matrix[a][b1] = 1
             except:
-                print("index out of range")
+                pass
 
             a = i+2
             b1 = j-1
@@ -175,7 +175,7 @@ def knight(n: int):
                     attacked_cells += 1
                 matrix[a][b1] = 1
             except:
-                print("index out of range")
+                pass
 
             try:  # check down right
                 if a < 0:
@@ -186,7 +186,7 @@ def knight(n: int):
                     attacked_cells += 1
                 matrix[a][b1] = 1
             except:
-                print("index out of range")
+                pass
 
             a = i+1
             a1 = i-1
@@ -201,7 +201,7 @@ def knight(n: int):
                     attacked_cells += 1
                 matrix[a][b] = 1
             except:
-                print("index out of range")
+                pass
 
             try:  # check right down
                 if a1 < 0:
@@ -212,7 +212,7 @@ def knight(n: int):
                     attacked_cells += 1
                 matrix[a1][b] = 1
             except:
-                print("index out of range")
+                pass
 
             a = i+1
             a1 = i-1
@@ -227,7 +227,7 @@ def knight(n: int):
                     attacked_cells += 1
                 matrix[a][b] = 1
             except:
-                print("index out of range")
+                pass
 
             try:  # check left down
                 if a1 < 0:
@@ -238,7 +238,7 @@ def knight(n: int):
                     attacked_cells += 1
                 matrix[a1][b] = 1
             except:
-                print("index out of range")
+                pass
 
             variations *= unattacked_cells
             unattacked_cells -= attacked_cells

@@ -2,7 +2,7 @@ import unittest
 from chess import queen, rook, bishop, knight
 
 
-class FunctionTest(unittest.TestCase):
+class ChessTest(unittest.TestCase):
 
     def test_queen(self):
         result = queen(2)
@@ -11,6 +11,8 @@ class FunctionTest(unittest.TestCase):
     def test_rook(self):
         result = rook(2)
         self.assertEqual(4, result)
+        result = rook(3)
+        self.assertEqual(36, result)
 
     def test_bishop(self):
         result = bishop(2)

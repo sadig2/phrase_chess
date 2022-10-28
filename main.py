@@ -1,5 +1,6 @@
+
 import uvicorn
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
 from chess import bishop, knight, queen
@@ -23,7 +24,12 @@ handlers = {
 @app.post("/")
 def post_item(item: Item):
     chess_piece = item.chess_pieces
+
+    if chess_piece not in handlers:
+        raise HTTPException(status_code=404, detail="Chess piece not found")
+
     function = handlers[chess_piece]
+
     solutionsCount = function(item.n)
     result = {}
     result["solution_count"] = solutionsCount
