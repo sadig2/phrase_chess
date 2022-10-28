@@ -9,10 +9,9 @@ class ChessTest(unittest.TestCase):
         self.assertEqual(2, result)
 
     def test_rook(self):
-        result = rook(2)
-        self.assertEqual(4, result)
+
         result = rook(3)
-        self.assertEqual(36, result)
+        self.assertEqual(6, result)
 
     def test_bishop(self):
         result = bishop(2)

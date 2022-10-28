@@ -25,37 +25,36 @@ def queen(n: int):
             contr_diagonal.remove(i+r)
             matrix[r][i] = 0
     recurs(0)
+    for i in matrix_list:
+        for x in i:
+            print(x)
+        print()
     return len(matrix_list)
 
 
-def rook(n: int) -> int:
+def rook(n: int):
     matrix = [[0]*n for _ in range(n)]
-    possible = 0  # how many rooks u can place in n to n matrix
-    attacked_cells = 0
-    unattacked_cells = n*n
-    variations = 1
-    for i in range(n):
-        for j in range(n):
-            if matrix[i][j] == 1:
-                continue
-            possible += 1
-            for x in range(n):
-                if matrix[i][x] != 1:
-                    attacked_cells += 1
-                    matrix[i][x] = 1
-                if matrix[x][j] != 1:
-                    attacked_cells += 1
-                    matrix[x][j] = 1
-            variations *= unattacked_cells
-            unattacked_cells -= attacked_cells
-            if unattacked_cells <= 0:
-                return variations
-            if possible >= n:
-                return variations
+    column = set()
+    matrix_list = []
 
-    if possible < n:
-        return 0
-    return variations
+    def recurs(r):
+        if r == n:
+            copy = [row.copy() for row in matrix]
+            matrix_list.append(copy)
+            return
+
+        for i in range(n):
+            if i in column:
+                continue
+            column.add(i)
+            matrix[r][i] = 1
+            recurs(r+1)
+
+            column.remove(i)
+            matrix[r][i] = 0
+    recurs(0)
+
+    return len(matrix_list)
 
 
 def bishop(n: int):
