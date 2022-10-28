@@ -3,7 +3,7 @@ import uvicorn
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
-from chess import bishop, knight, queen
+from chess import bishop, knight, queen, rook
 
 app = FastAPI()
 
@@ -17,7 +17,7 @@ handlers = {
     "queen": queen,
     "knight": knight,
     "bishop": bishop,
-    "knight": knight
+    "rook": rook
 }
 
 
