@@ -5,8 +5,8 @@ from chess import queen, rook, bishop, knight
 class ChessTest(unittest.TestCase):
 
     def test_queen(self):
-        result = queen(2)
-        self.assertEqual(0, result)
+        result = queen(4)
+        self.assertEqual(2, result)
 
     def test_rook(self):
         result = rook(2)

@@ -1,37 +1,31 @@
 def queen(n: int):
-    if n == 1:
-        return 1
     matrix = [[0]*n for _ in range(n)]
-    possible = 0  # how many queens u can place in n to n matrix
-    for i in range(n):
-        for j in range(n):
-            if matrix[i][j] == 1:
+    diagonal = set()
+    contr_diagonal = set()
+    column = set()
+    matrix_list = []
+
+    def recurs(r):
+        if r == n:
+            copy = [row.copy() for row in matrix]
+            matrix_list.append(copy)
+            return
+
+        for i in range(n):
+            if i in column or i-r in diagonal or i+r in contr_diagonal:
                 continue
-            possible += 1
-            for x in range(n):
-                matrix[i][x] = 1
-                matrix[x][j] = 1
-                try:
-                    matrix[i+x][j+x] = 1
-                except:
-                    pass
+            column.add(i)
+            diagonal.add(i-r)
+            contr_diagonal.add(i+r)
+            matrix[r][i] = 1
+            recurs(r+1)
 
-                try:
-                    matrix[i-x][j-x] = 1
-                except:
-                    pass
-                try:
-                    matrix[i+x][j-x] = 1
-                except:
-                    pass
-
-                try:
-                    matrix[i-x][j+x] = 1
-                except:
-                    pass
-
-    if possible < n:
-        return 0
+            column.remove(i)
+            diagonal.remove(i-r)
+            contr_diagonal.remove(i+r)
+            matrix[r][i] = 0
+    recurs(0)
+    return len(matrix_list)
 
 
 def rook(n: int) -> int:
