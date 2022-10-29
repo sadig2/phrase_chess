@@ -1,5 +1,6 @@
 import unittest
-from chess import queen, rook, bishop, knight
+
+from chess import bishop, knight, queen, rook
 
 
 class ChessTest(unittest.TestCase):
@@ -15,7 +16,9 @@ class ChessTest(unittest.TestCase):
 
     def test_bishop(self):
         result = bishop(3)
-        self.assertEqual(5, result)
+        self.assertEqual(26, result)        
+        result = bishop(2)
+        self.assertEqual(4, result)
 
     def test_knight(self):
         result = knight(2)

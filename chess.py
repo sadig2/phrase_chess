@@ -57,35 +57,36 @@ def rook(n: int):
     return len(matrix_list)
 
 
-def bishop(n: int):
+def bishop(n:int):
     matrix = [[0]*n for _ in range(n)]
-    diagonal = set()
-    contr_diagonal = set()
+    diag = set()
+    non_diag = set()
     matrix_list = []
-
-    def recurs(r):
-        if r == n:
-            copy = [row.copy() for row in matrix]
-            matrix_list.append(copy)
+    def recurs(row ,column, count):
+        if count == 0:
+            matrix_list.append([i.copy() for i in matrix])
+            return # leave the last function
+        if column >= n:
+            recurs(row+1, 0, count)
             return
+        if row == n :
+            return
+    
+        if column-row not in diag and column+row not in non_diag:
+            matrix[row][column] = 1
+            diag.add(column-row)
+            non_diag.add(column+row)
+            recurs(row, column + 1, count-1)
+            matrix[row][column] = 0
+            diag.remove(column-row)
+            non_diag.remove(column+row)
+        recurs(row, column + 1, count)
 
-        for i in range(n):
-            if i-r in diagonal or i+r in contr_diagonal:
-                continue
-            diagonal.add(i-r)
-            contr_diagonal.add(i+r)
-            matrix[r][i] = 1
-            recurs(r+1)
-
-            diagonal.remove(i-r)
-            contr_diagonal.remove(i+r)
-            matrix[r][i] = 0
-    recurs(0)
-    for i in matrix_list:
-        for x in i:
-            print(x)
-        print()
+    recurs(0,0,n)
+            
     return len(matrix_list)
+
+
 
 
 def knight(n: int):
